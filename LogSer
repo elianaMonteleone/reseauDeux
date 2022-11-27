@@ -1,3 +1,19 @@
 port 1300 
-Attachement de la socket impossible: Address already in use
-CreateSockets:: Address already in use
+>TypeRequete 1 
+ Reference 0 
+ NumeroFacture 0 
+ Date 0 
+ Reference 1 
+ Places 0 
+ Prix 0 
+ Constructeur  
+ Modele  
+ Client  
+ Puissance 0 
+
+RechercheME_RC>
+Ouverture reussie VehiculesHV
+RechercheME_RC<
+res:1 Reference:Dacia AAAA 100
+
+bytes ecrits:184

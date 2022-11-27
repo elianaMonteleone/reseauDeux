@@ -101,9 +101,10 @@ void AfficheEnteteVehiculeHV ()
 {
    char Tampon[80] ;
    sprintf(Tampon,"%s","Ref" ) ;MonPrintf(Tampon,4,strlen(Tampon)) ;
-   sprintf(Tampon,"%s","Constructeur") ;    MonPrintf(Tampon,30,strlen(Tampon)) ;
-   sprintf(Tampon,"%s","Modele") ;    MonPrintf(Tampon,30,strlen(Tampon)) ;
-   sprintf(Tampon,"%s","Quantite") ; MonPrintf(Tampon,6,strlen(Tampon)) ;
+   sprintf(Tampon,"%s","Constructeur") ;    MonPrintf(Tampon,25,strlen(Tampon)) ;
+   sprintf(Tampon,"%s","Modele") ;    MonPrintf(Tampon,20,strlen(Tampon)) ;
+   sprintf(Tampon,"%s","Quantite") ; MonPrintf(Tampon,15,strlen(Tampon)) ;
+   sprintf(Tampon,"%s","Puissance") ; MonPrintf(Tampon,6,strlen(Tampon)) ;
    printf("\n") ;
 }
 
@@ -111,9 +112,10 @@ void AfficheVehiculeHV (struct VehiculeHV *UnRecord)
 {
    char Tampon[80] ;
    sprintf(Tampon,"%d",UnRecord->Reference ) ;  MonPrintf(Tampon,4,strlen(Tampon)) ;
-   sprintf(Tampon,"%s",UnRecord->Constructeur ) ;    MonPrintf(Tampon,30,strlen(Tampon)) ;
-   sprintf(Tampon,"%s",UnRecord->Modele ) ;    MonPrintf(Tampon,30,strlen(Tampon)) ;
-   sprintf(Tampon,"%d",UnRecord->Quantite ) ; MonPrintf(Tampon,6,strlen(Tampon)) ;
+   sprintf(Tampon,"%s",UnRecord->Constructeur ) ;    MonPrintf(Tampon,25,strlen(Tampon)) ;
+   sprintf(Tampon,"%s",UnRecord->Modele ) ;    MonPrintf(Tampon,20,strlen(Tampon)) ;
+   sprintf(Tampon,"%d",UnRecord->Quantite ) ; MonPrintf(Tampon,15,strlen(Tampon)) ;
+   sprintf(Tampon,"%d",UnRecord->Puissance ) ; MonPrintf(Tampon,6,strlen(Tampon)) ;
    printf("\n") ;
 }
 
@@ -130,7 +132,10 @@ void SaiSieVehiculeHV (int Reference, struct VehiculeHV  *UnRecord )
    printf("Saisie Quantite :") ;
    fgets(Tampon,sizeof Tampon,stdin ) ;
    UnRecord -> Quantite = atoi(Tampon) ;
-   
+   printf("Saisie Puissance :");
+   fgets(Tampon, sizeof Tampon, stdin);
+   UnRecord->Puissance = atoi(Tampon);
+
    DelNewLine(UnRecord->Constructeur) ;
    DelNewLine(UnRecord->Modele) ;
    AfficheEnteteVehiculeHV () ;
@@ -276,29 +281,28 @@ int main()
             Redo='y' ;
             while ( Redo=='Y' || Redo=='y'){ 
                int Nombre ;
-               Nombre= NombreVehiculesHV ("VehiculesHV") ;
-               SaiSieVehiculeHV (Nombre+1, &UnRecord ) ;
-               CreationAjoutVehiculeHV ("VehiculesHV",&UnRecord) ; 
-               printf("Encoder un autre (Y/N) ?)") ;
-               printf(">>") ; Redo=GetchE() ; printf("\n") ;
+               Nombre= NombreVehiculesHV ("VehiculesHV");
+               SaiSieVehiculeHV (Nombre+1, &UnRecord );
+               CreationAjoutVehiculeHV ("VehiculesHV",&UnRecord); 
+               printf("Encoder un autre (Y/N) ?)");
+               printf(">>"); Redo=GetchE(); printf("\n");
             }
       
-            break ;	
+            break;	
          }
-         case '2': ListingVehiculesHV ("VehiculesHV") ;
-            break ;
+         case '2': ListingVehiculesHV ("VehiculesHV");
+            break;
          case '4': 
          {
-            int ref;
+            int ref, ch;
             struct VehiculeHV vehicule_recherche;
             char Tampon[8];
 
+            // Demande ref du vehicule à rechercher à l'utilisateur
             printf("Veuillez entrer la référence du véhicul à rechercher\n>>");
-            fgets(Tampon, sizeof Tampon, stdin);
+            fgets(Tampon, sizeof(Tampon), stdin);
             ref = atoi(Tampon);
-            while(getchar() != '\n');
-            //Demande ref du vehicule à rechercher à l'utilisateur
-
+            
             //Recherche le véhicule en question et l'affiche s'il est trouvé
             if(RechercheME_RC("VehiculesHV", ref, &vehicule_recherche) == 1 && ref != 0)
                AfficheVehiculeHV(&vehicule_recherche);
@@ -307,9 +311,9 @@ int main()
             break ;
          }
          case '6': ListingFacturesHV("FactureHV");
-            break ;
+            break;
          case '7': AProposServeurHV("V 1","Monteleone Eliana","Russe Cyril");
-            break ;
+            break;
          
          
          case '8': exit(0);

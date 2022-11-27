@@ -1,2 +1,14 @@
 port 1400 
-CreateSockets 3
+Envoi de 184 bytes
+>TypeRequete 4 
+ Reference 0 
+ NumeroFacture 0 
+ Date 0 
+ Reference 1 
+ Places 0 
+ Prix 0 
+ Constructeur Dacia 
+ Modele AAAA 
+ Client  
+ Puissance 100 
+

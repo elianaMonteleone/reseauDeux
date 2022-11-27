@@ -8,19 +8,19 @@
 // 2022 , interdit de modifier les champs existants
 
 struct VehiculeHV{ 
-    int Supprime;
+   int Supprime;
 	int Reference;
 	char Constructeur[30];
-   	char Modele[30];
+   char Modele[30];
 	int Quantite;
 	int Puissance;
 };
 
 struct FactureHV{
-    int NumeroFacturation;
-    char Acheteur[40];
+   int NumeroFacturation;
+   char Acheteur[40];
 	time_t DateFacturation;
-    int Quantite;
+   int Quantite;
 	int Reference;
 };  	
 #endif

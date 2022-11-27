@@ -3,6 +3,8 @@
 EXECS = admin ser cli 
 LIBS=
 CC = gcc
+
+.SILENT:
 all: $(EXECS)
 
 
@@ -14,16 +16,17 @@ admin:	data.h	admin.c	LibSerME_RC.o
 	echo "Compilation de admin"
 	$(CC) -o admin	admin.c	LibSerME_RC.o 
 
-udplib.o: ../udplib/udplib.h 		../udplib/udplib.c
-		echo "Compilation de udplib.o"
-		$(CC) -c ../udplib/udplib.c
+udplib.o: ../udplib/udplib.h  ../udplib/udplib.c
+	echo "Compilation de udplib.o"
+	$(CC) -c ../udplib/udplib.c
 
 cli: cli.c  requeteme_rc.h  data.h  udplib.o
-		echo "Compilation de client"
-		$(CC) -o cli cli.c	udplib.o  $(LIBS)
+	echo "Compilation de client"
+	$(CC) -o cli cli.c	udplib.o $(LIBS)
 
 ser: ser.c  requeteme_rc.h  data.h  udplib.o LibSerME_RC.o
-		echo "Compilation de serveur"
-		$(CC) -o ser ser.c  udplib.o LibSerME_RC.o   $(LIBS)
+	echo "Compilation de serveur"
+	$(CC) -o ser ser.c  udplib.o LibSerME_RC.o  $(LIBS)
+
 clean:
 	rm -rf *.o $(EXECS)
